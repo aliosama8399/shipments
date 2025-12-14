@@ -135,7 +135,7 @@ export default function DriverRegister() {
 
           <p className="text-center text-sm text-gray-600">
             Already have an account?{' '}
-            <Link href={route('login')} className="font-medium text-indigo-600 hover:text-indigo-500">
+            <Link href={route('driver.login.create')} className="font-medium text-indigo-600 hover:text-indigo-500">
               Login
             </Link>
           </p>
