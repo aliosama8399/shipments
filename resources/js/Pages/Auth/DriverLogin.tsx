@@ -127,8 +127,8 @@ export default function DriverLogin() {
             type="button"
             onClick={() => setLoginMethod('email')}
             className={`flex-1 py-3 px-4 rounded-lg font-medium transition ${loginMethod === 'email'
-                ? 'bg-indigo-600 text-white'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              ? 'bg-indigo-600 text-white'
+              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
           >
             Email & Password
@@ -137,8 +137,8 @@ export default function DriverLogin() {
             type="button"
             onClick={() => setLoginMethod('face')}
             className={`flex-1 py-3 px-4 rounded-lg font-medium transition ${loginMethod === 'face'
-                ? 'bg-indigo-600 text-white'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              ? 'bg-indigo-600 text-white'
+              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
           >
             Face Recognition

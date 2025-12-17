@@ -28,6 +28,7 @@ class DriverShipmentController extends Controller
 
         return Inertia::render('Driver/Shipments', [
             'shipments' => $this->shipmentService->getByDriver($driver->id),
+            'currentDriver' => $driver,
         ]);
     }
 
@@ -44,6 +45,7 @@ class DriverShipmentController extends Controller
             'shipment' => $shipment->load(['parcels', 'statusHistories']),
             'timeline' => $this->shipmentService->getTimeline($shipment),
             'allowedStatuses' => $this->statusTransitionService->getAllowedTransitions($shipment->status, 'driver'),
+            'currentDriver' => $driver,
         ]);
     }
 

@@ -1,10 +1,16 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
+import DriverHeader from '../../Components/DriverHeader';
 
 interface Parcel {
     id: number;
     weight: number;
     fragile: boolean;
+}
+
+interface Driver {
+    id: number;
+    name: string;
 }
 
 interface Shipment {
@@ -19,9 +25,10 @@ interface Shipment {
 
 interface Props {
     shipments: Shipment[];
+    currentDriver?: Driver | null;
 }
 
-export default function DriverShipments({ shipments }: Props) {
+export default function DriverShipments({ shipments, currentDriver }: Props) {
     const statusColors: Record<string, string> = {
         CREATED: 'bg-gray-100 text-gray-800',
         PICKED_UP: 'bg-blue-100 text-blue-800',
@@ -36,13 +43,9 @@ export default function DriverShipments({ shipments }: Props) {
 
     return (
         <div className="min-h-screen bg-gray-100">
+            <DriverHeader driverName={currentDriver?.name} driverId={currentDriver?.id} />
             <div className="max-w-3xl mx-auto py-8 px-4">
-                <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900">My Shipments</h1>
-                    <Link href={route('driver.dashboard')} className="text-gray-600 hover:text-gray-900">
-                        ← Dashboard
-                    </Link>
-                </div>
+                <h1 className="text-3xl font-bold text-gray-900 mb-8">My Shipments</h1>
 
                 {/* Active Shipments */}
                 <div className="mb-8">

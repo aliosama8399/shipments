@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm, Link } from '@inertiajs/react';
+import DriverHeader from '../../Components/DriverHeader';
 
 interface Parcel {
     id: number;
@@ -14,6 +15,11 @@ interface StatusHistory {
     status: string;
     notes: string | null;
     created_at: string;
+}
+
+interface Driver {
+    id: number;
+    name: string;
 }
 
 interface Shipment {
@@ -33,9 +39,10 @@ interface Props {
     shipment: Shipment;
     timeline: StatusHistory[];
     allowedStatuses: string[];
+    currentDriver?: Driver | null;
 }
 
-export default function ShipmentDetail({ shipment, timeline, allowedStatuses }: Props) {
+export default function ShipmentDetail({ shipment, timeline, allowedStatuses, currentDriver }: Props) {
     const { data, setData, patch, processing, errors } = useForm({
         status: '',
         notes: '',
@@ -61,6 +68,7 @@ export default function ShipmentDetail({ shipment, timeline, allowedStatuses }: 
 
     return (
         <div className="min-h-screen bg-gray-100">
+            <DriverHeader driverName={currentDriver?.name} driverId={currentDriver?.id} />
             <div className="max-w-2xl mx-auto py-8 px-4">
                 <Link href={route('driver.shipments.index')} className="text-gray-500 hover:text-gray-700 text-sm">
                     ← Back to My Shipments
@@ -146,8 +154,8 @@ export default function ShipmentDetail({ shipment, timeline, allowedStatuses }: 
                                         onClick={() => handleStatusUpdate(status)}
                                         disabled={processing}
                                         className={`px-4 py-2 rounded-lg font-medium transition ${status === 'FAILED'
-                                                ? 'bg-red-100 text-red-700 hover:bg-red-200'
-                                                : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                                            ? 'bg-red-100 text-red-700 hover:bg-red-200'
+                                            : 'bg-indigo-600 text-white hover:bg-indigo-700'
                                             } disabled:opacity-50`}
                                     >
                                         {statusLabels[status] || status}
